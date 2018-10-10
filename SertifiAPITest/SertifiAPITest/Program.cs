@@ -10,8 +10,14 @@ namespace SertifiAPITest
     {
         static void Main(string[] args)
         {
+            WebFormatter wf = new WebFormatter();
+
+            string jsonData = wf.GetJSONFromURL("http://apitest.sertifi.net/api/Students");
+
             JSONParser parser = new JSONParser();
-            parser.ReadJSONFile($"../../json/StudentData.json");
+            //parser.ReadJSONFile($"../../json/StudentData.json");
+            parser.ReadJSONData(jsonData);
+
             parser.dump();
         }
     }

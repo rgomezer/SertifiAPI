@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace SertifiAPITest
 {
-    public class StudentDataInput
+    public class StudentData
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -25,16 +25,18 @@ namespace SertifiAPITest
 
     public class JSONParser
     {
-        List<StudentDataInput> students;
+        //data
+        List<StudentData> students;
 
-        public FileErrorCode ReadJSONFile(string fileName)
+        //This function takes in a json string and deserializes the data into our list of Student Data
+        public FileErrorCode ReadJSONData(string data)
         {
-            if(fileName == null || fileName == "")
+            if(data == null || data == "")
             {
                 return FileErrorCode.FAIL;
             }
 
-            students = JsonConvert.DeserializeObject<List<StudentDataInput>>(File.ReadAllText(fileName));
+            students = JsonConvert.DeserializeObject<List<StudentData>>(data);
 
             if(students == null)
             {
@@ -44,6 +46,7 @@ namespace SertifiAPITest
             return FileErrorCode.SUCCESS;
         }
 
+        //A simple print method for debugging
         public void dump()
         {
             foreach (var item in students)
