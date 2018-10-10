@@ -49,16 +49,16 @@ namespace SertifiAPITest
             foreach (var item in students)
             {
                 System.Console.WriteLine("");
-                System.Console.WriteLine("");
 
                 System.Console.WriteLine("ID: {0}", item.Id);
                 System.Console.WriteLine("Name: {0}", item.Name);
                 System.Console.WriteLine("Start Year: {0}", item.StartYear);
                 System.Console.WriteLine("End Year: {0}", item.EndYear);
 
+                System.Console.Write("GPA Record: ");
                 foreach (var gpa in item.GPARecord)
                 {
-                    System.Console.WriteLine("GPA Record: {0}", gpa);
+                    System.Console.Write("{0}, ", gpa);
                 }
             }
         }
