@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace SertifiAPITest
 {
+    //Our data transfer object
     public class StudentData
     {
         public int Id { get; set; }
@@ -17,7 +18,7 @@ namespace SertifiAPITest
         public List<double> GPARecord { get; set; }
     }
 
-    public enum FileErrorCode
+    public enum ErrorCode
     {
         SUCCESS,
         FAIL
@@ -26,28 +27,38 @@ namespace SertifiAPITest
     public class JSONParser
     {
         //data
-        List<StudentData> students;
+        private static JSONParser instance;
 
-        //This function takes in a json string and deserializes the data into our list of Student Data
-        public FileErrorCode ReadJSONData(string data)
+        private JSONParser()
         {
-            if(data == null || data == "")
+            //does nothing
+        }
+
+        private static JSONParser privGetInstance()
+        {
+            if(instance == null)
             {
-                return FileErrorCode.FAIL;
+                instance = new JSONParser();
             }
 
+            return instance;
+        }
+
+        //This function takes in a json string and deserializes the data into our list of students with their corresponding data
+        public static ErrorCode ReadJSONData(string data, out List<StudentData> students)
+        {
             students = JsonConvert.DeserializeObject<List<StudentData>>(data);
 
             if(students == null)
             {
-                return FileErrorCode.FAIL;
+                return ErrorCode.FAIL;
             }
 
-            return FileErrorCode.SUCCESS;
+            return ErrorCode.SUCCESS;
         }
 
         //A simple print method for debugging
-        public void dump()
+        public static void dump(List<StudentData> students)
         {
             foreach (var item in students)
             {

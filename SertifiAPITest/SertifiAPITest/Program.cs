@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,13 @@ namespace SertifiAPITest
 
             string jsonData = wf.GetJSONFromURL("http://apitest.sertifi.net/api/Students");
 
-            JSONParser parser = new JSONParser();
-            //parser.ReadJSONFile($"../../json/StudentData.json");
-            parser.ReadJSONData(jsonData);
+            ErrorCode retCode;
+            List<StudentData> students;
 
-            parser.dump();
+            retCode = JSONParser.ReadJSONData(jsonData, out students);
+            Debug.Assert(retCode == ErrorCode.SUCCESS); //safety
+
+            JSONParser.dump(students);
         }
     }
 }
