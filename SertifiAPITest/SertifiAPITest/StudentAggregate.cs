@@ -8,17 +8,6 @@ using Newtonsoft.Json;
 
 namespace SertifiAPITest
 {
-    //Another Data Transfer Object
-    public class StudentAggregate
-    {
-        public string YourName { get; set; }
-        public string YourEmail { get; set; }
-        public int YearWithHighestAttendance { get; set; }
-        public int YearWithHighestOverallGpa { get; set; }
-        public List<int> Top10StudentIdsWithHighestGpa { get; set; }
-        public int StudentIdMostInconsistent { get; set; }
-    }
-
     //Business Logic done here
     public class StudentAggregateParser
     {
@@ -59,9 +48,7 @@ namespace SertifiAPITest
 
             string jsonOutput = JsonConvert.SerializeObject(aggregregate, Formatting.Indented);
 
-            WebFormatter wf = new WebFormatter();
-
-            wf.UploadJSONToURL(jsonOutput, "http://apitest.sertifi.net/api/StudentAggregate");
+            WebFormatter.UploadJSONToURL(jsonOutput, "http://apitest.sertifi.net/api/StudentAggregate");
 
             Console.WriteLine("");
             Console.WriteLine("");

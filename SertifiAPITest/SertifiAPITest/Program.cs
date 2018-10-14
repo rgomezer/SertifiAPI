@@ -11,9 +11,8 @@ namespace SertifiAPITest
     {
         static void Main(string[] args)
         {
-            WebFormatter wf = new WebFormatter();
-
-            string jsonData = wf.GetJSONFromURL("http://apitest.sertifi.net/api/Students");
+            string jsonData;
+            WebFormatter.GetJSONFromURL("http://apitest.sertifi.net/api/Students", out jsonData);
 
             ErrorCode retCode;
             List<StudentData> students;

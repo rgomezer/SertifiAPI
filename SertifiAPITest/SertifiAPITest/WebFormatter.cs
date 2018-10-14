@@ -9,28 +9,48 @@ namespace SertifiAPITest
 {
     public class WebFormatter
     {
+        private static WebFormatter instance;
         private WebClient wc;
 
-        public WebFormatter()
+        private WebFormatter()
         {
             this.wc = new WebClient();
         }
 
-        public string GetJSONFromURL(string url)
+        private static WebFormatter privGetInstance()
         {
-            string temp = "";
-            temp = this.wc.DownloadString(url);
+            if(instance == null)
+            {
+                instance = new WebFormatter();
+            }
 
-            return temp;
+            return instance;
         }
 
-        public void UploadJSONToURL(string data, string address)
+        public static void GetJSONFromURL(string url, out string data)
+        {
+            WebFormatter pWeb = privGetInstance();
+            pWeb.privGetJSONFromURL(url, out data);
+        }
+
+        public static void UploadJSONToURL(string data, string address)
+        {
+            WebFormatter pWeb = privGetInstance();
+            pWeb.privUploadJSONToURL(address, data);
+        }
+
+        private void privGetJSONFromURL(string url, out string data)
+        {
+            data = this.wc.DownloadString(url);
+        }
+
+        private void privUploadJSONToURL(string address, string data)
         {
             this.wc.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            
+
             string response = this.wc.UploadString(new Uri(address), "PUT", data);
 
-            Console.WriteLine("Response: {0}",response);
+            Console.WriteLine("Response: {0}", response);
         }
     }
 }
