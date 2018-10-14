@@ -22,6 +22,9 @@ namespace SertifiAPITest
             Debug.Assert(retCode == ErrorCode.SUCCESS); //safety
 
             JSONParser.dump(students);
+
+            StudentAggregateParser pSAggregate = new StudentAggregateParser(students);
+            pSAggregate.Process();
         }
     }
 }

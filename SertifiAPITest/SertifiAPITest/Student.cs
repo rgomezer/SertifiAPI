@@ -16,6 +16,35 @@ namespace SertifiAPITest
         public int StartYear { get; set; }
         public int EndYear { get; set; }
         public List<double> GPARecord { get; set; }
+        public List<AnnualStudentGrades> AnnualGrades { get { return privCalculateAnnualGrades(); } }
+
+        //Helper function
+        private List<AnnualStudentGrades> privCalculateAnnualGrades()
+        {
+            List<AnnualStudentGrades> temp = new List<AnnualStudentGrades>();
+
+            int startYear = StartYear;
+
+            foreach(double grade in GPARecord)
+            {
+                AnnualStudentGrades grades = new AnnualStudentGrades
+                {
+                    GradeYear = startYear,
+                    GPA = grade
+                };
+
+                startYear++;
+                temp.Add(grades);
+            }
+
+            return temp;
+        }
+    }
+
+    public class AnnualStudentGrades
+    {
+        public int GradeYear { get; set; }
+        public double GPA { get; set; }
     }
 
     public enum ErrorCode
@@ -47,7 +76,7 @@ namespace SertifiAPITest
         //This function takes in a json string and deserializes the data into our list of students with their corresponding data
         public static ErrorCode ReadJSONData(string data, out List<StudentData> students)
         {
-            students = JsonConvert.DeserializeObject<List<StudentData>>(data);
+            students = JsonConvert.DeserializeObject<List<StudentData>>(data); //magic
 
             if(students == null)
             {
