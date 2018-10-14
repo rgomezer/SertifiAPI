@@ -9,16 +9,27 @@ namespace SertifiAPITest
 {
     public class WebFormatter
     {
+        private WebClient wc;
+
+        public WebFormatter()
+        {
+            this.wc = new WebClient();
+        }
+
         public string GetJSONFromURL(string url)
         {
             string temp = "";
-
-            WebClient wc = new WebClient();
-
-            temp = wc.DownloadString(url);
+            temp = this.wc.DownloadString(url);
 
             return temp;
         }
 
+        public void UploadJSONToURL(string data, string address)
+        {
+            this.wc.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            string response = this.wc.UploadString(new Uri(address), "PUT", data);
+
+            Console.WriteLine("Response: {0}",response);
+        }
     }
 }

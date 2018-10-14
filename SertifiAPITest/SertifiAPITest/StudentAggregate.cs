@@ -59,8 +59,17 @@ namespace SertifiAPITest
 
             string jsonOutput = JsonConvert.SerializeObject(aggregregate, Formatting.Indented);
 
+            WebFormatter wf = new WebFormatter();
+
+            wf.UploadJSONToURL(jsonOutput, "http://apitest.sertifi.net/api/StudentAggregate");
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Data Query");
             Console.WriteLine("");
             Console.Write(jsonOutput);
+            Console.WriteLine("");
+            Console.WriteLine("");
         }
 
         //Helper functions

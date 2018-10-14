@@ -89,6 +89,9 @@ namespace SertifiAPITest
         //A simple print method for debugging
         public static void dump(List<StudentData> students)
         {
+            System.Console.WriteLine("JSON Data Downloaded");
+            System.Console.WriteLine("");
+
             foreach (var item in students)
             {
                 System.Console.WriteLine("");
@@ -103,6 +106,7 @@ namespace SertifiAPITest
                 {
                     System.Console.Write("{0}, ", gpa);
                 }
+                System.Console.WriteLine("");
             }
         }
     }
