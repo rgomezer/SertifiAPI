@@ -45,11 +45,6 @@ namespace SertifiAPITest
 
             students = JsonConvert.DeserializeObject<List<StudentData>>(data); 
 
-            if(students == null)
-            {
-                return ErrorCode.FAIL;
-            }
-
             return ErrorCode.SUCCESS;
         }
 

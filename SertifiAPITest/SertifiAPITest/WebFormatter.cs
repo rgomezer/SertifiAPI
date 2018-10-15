@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -40,16 +41,38 @@ namespace SertifiAPITest
             pWeb.privUploadJSONToURL(address, data);
         }
 
+        //Helper functions for Downloading and Uploading JSON Data
         private void privGetJSONFromURL(string url, out string data)
         {
-            data = this.wc.DownloadString(url);
+            try
+            {
+                data = this.wc.DownloadString(url);
+            }
+            catch (WebException ex)
+            {
+                data = null;
+                string response = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                Console.WriteLine("Download JSON Failed: {0}", response);
+            }
         }
 
         private void privUploadJSONToURL(string address, string data)
         {
+            string response;
+         
             this.wc.Headers.Add(HttpRequestHeader.ContentType, "application/json");
             this.wc.Encoding = Encoding.UTF8;
-            this.wc.UploadString(new Uri(address), "PUT", data);
+
+            try
+            {
+                response = this.wc.UploadString(address, "PUT", data);
+            }
+            catch (WebException ex)
+            {
+                response = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                Console.WriteLine("Upload JSON Failed: {0}", response);
+            }
+           
         }
     }
 }
