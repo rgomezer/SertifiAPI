@@ -17,6 +17,7 @@ namespace SertifiAPITest
         //special ctor
         public StudentAggregateParser(List<StudentData> input)
         {
+            Debug.Assert(input != null); //safety
             this.students = privCopyData(input);
         }
 
@@ -50,11 +51,16 @@ namespace SertifiAPITest
 
             WebFormatter.UploadJSONToURL(jsonOutput, "http://apitest.sertifi.net/api/StudentAggregate");
 
+            dump(jsonOutput);         
+        }
+
+        public void dump(string output)
+        {
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("Data Query");
             Console.WriteLine("");
-            Console.Write(jsonOutput);
+            Console.Write(output);
             Console.WriteLine("");
             Console.WriteLine("");
         }

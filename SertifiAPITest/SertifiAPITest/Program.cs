@@ -9,7 +9,7 @@ namespace SertifiAPITest
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Run()
         {
             string jsonData;
             WebFormatter.GetJSONFromURL("http://apitest.sertifi.net/api/Students", out jsonData);
@@ -24,6 +24,11 @@ namespace SertifiAPITest
 
             StudentAggregateParser pSAggregate = new StudentAggregateParser(students);
             pSAggregate.Process();
+        }
+
+        static void Main(string[] args)
+        {
+            Run();
         }
     }
 }

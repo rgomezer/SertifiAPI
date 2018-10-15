@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SertifiAPITest
 {
-    //Another Data Transfer Object
+    //Student Aggregate Bucket
     public class StudentAggregate
     {
         public string YourName { get; set; }
@@ -17,7 +17,7 @@ namespace SertifiAPITest
         public int StudentIdMostInconsistent { get; set; }
     } 
     
-    //Our data transfer object
+    //Student Data Bucket
     public class StudentData
     {
         public int Id { get; set; }
@@ -50,6 +50,7 @@ namespace SertifiAPITest
         }
     }
 
+    //Bucket for storing GPA information
     public class AnnualStudentGrades
     {
         public int GradeYear { get; set; }
