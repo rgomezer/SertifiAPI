@@ -37,7 +37,13 @@ namespace SertifiAPITest
         //This function takes in a json string and deserializes the data into our list of students with their corresponding data
         public static ErrorCode ReadJSONData(string data, out List<StudentData> students)
         {
-            students = JsonConvert.DeserializeObject<List<StudentData>>(data); //magic
+            if(data == null || data == "" || data == " ")
+            {
+                students = null;
+                return ErrorCode.FAIL;
+            }
+
+            students = JsonConvert.DeserializeObject<List<StudentData>>(data); 
 
             if(students == null)
             {

@@ -9,6 +9,7 @@ namespace SertifiAPITest
 {
     public class WebFormatter
     {
+        //data
         private static WebFormatter instance;
         private WebClient wc;
 
@@ -47,10 +48,8 @@ namespace SertifiAPITest
         private void privUploadJSONToURL(string address, string data)
         {
             this.wc.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-
-            string response = this.wc.UploadString(new Uri(address), "PUT", data);
-
-            Console.WriteLine("Response: {0}", response);
+            this.wc.Encoding = Encoding.UTF8;
+            this.wc.UploadString(new Uri(address), "PUT", data);
         }
     }
 }

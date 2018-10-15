@@ -38,8 +38,8 @@ namespace SertifiAPITest
         {
             StudentAggregate aggregregate = new StudentAggregate
             {
-                YourEmail = "rgomez16@mail.depaul.edu",
-                YourName = "Rodolfo Gomez",
+                YourEmail = "rgomez16@mail.depaul.edu", //hard-coded for requirements
+                YourName = "Rodolfo Gomez", //hard-coded for requirements
                 YearWithHighestAttendance = privFindYearWithHighestAttendance(),
                 YearWithHighestOverallGpa = privFindYearWithHighestOverallGpa(),
                 Top10StudentIdsWithHighestGpa = privFindTop10StudentIdsWithHighestGpa(),
@@ -62,8 +62,8 @@ namespace SertifiAPITest
         //Helper functions
         private int privFindYearWithHighestAttendance()
         {
-            var grouped = this.students.SelectMany(g => g.AnnualGrades)
-                                .GroupBy(g => g.GradeYear)
+            var grouped = this.students.SelectMany(x => x.AnnualGrades)
+                                .GroupBy(x => x.GradeYear)
                                 .Select(x => new { x.Key, Count = x.Count() });
 
             var mostYears = grouped.Max(x => x.Count);
