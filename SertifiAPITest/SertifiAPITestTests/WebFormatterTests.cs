@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace SertifiAPITestTests
 {
@@ -58,6 +59,13 @@ namespace SertifiAPITestTests
             WebFormatter.UploadJSONToURL(nullData2, "", out response);
             WebFormatter.UploadJSONToURL(nullData, " ", out response);
             WebFormatter.UploadJSONToURL(nullData2, " ", out response);
+        }
+
+        private void privReadDataFromFile(string path, out string data)
+        {
+            StreamReader reader = new StreamReader(path, Encoding.UTF8);
+
+            data = reader.ReadToEnd();
         }
     }
 }

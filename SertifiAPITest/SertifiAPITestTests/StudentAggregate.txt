@@ -1,0 +1,1 @@
+{\r\n  \"YourName\": \"Rodolfo Gomez\",\r\n  \"YourEmail\": \"rgomez16@mail.depaul.edu\",\r\n  \"YearWithHighestAttendance\": 2011,\r\n  \"YearWithHighestOverallGpa\": 2016,\r\n  \"Top10StudentIdsWithHighestGpa\": [\r\n    4,\r\n    10,\r\n    11,\r\n    20,\r\n    18,\r\n    13,\r\n    24,\r\n    6,\r\n    22,\r\n    9\r\n  ],\r\n  \"StudentIdMostInconsistent\": 15\r\n}
