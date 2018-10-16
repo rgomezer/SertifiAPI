@@ -70,15 +70,15 @@ namespace SertifiAPITest
         //Helper functions
         private int privFindYearWithHighestAttendance()
         {
-            var grouped = this.students.SelectMany(x => x.AnnualGrades)
+            var studentGroup = this.students.SelectMany(x => x.AnnualGrades)
                                 .GroupBy(x => x.GradeYear)
                                 .Select(x => new { x.Key, Count = x.Count() });
 
-            var mostYears = grouped.Max(x => x.Count);
+            int maxYears = studentGroup.Max(x => x.Count);
 
-            var highestYears = grouped.Where(x => x.Count == mostYears).Select(x => x.Key).ToList();
+            List<int> highestAttendendanceYear = studentGroup.Where(x => x.Count == maxYears).Select(x => x.Key).ToList();
 
-            return highestYears.Min(x => x);
+            return highestAttendendanceYear.Min(x => x);
         }
 
         private int privFindYearWithHighestOverallGpa()
