@@ -35,10 +35,10 @@ namespace SertifiAPITest
             pWeb.privGetJSONFromURL(url, out data);
         }
 
-        public static void UploadJSONToURL(string data, string address)
+        public static void UploadJSONToURL(string data, string address, out string response)
         {
             WebFormatter pWeb = privGetInstance();
-            pWeb.privUploadJSONToURL(address, data);
+            pWeb.privUploadJSONToURL(address, data, out response);
         }
 
         //Helper functions for Downloading and Uploading JSON Data
@@ -56,10 +56,8 @@ namespace SertifiAPITest
             }
         }
 
-        private void privUploadJSONToURL(string address, string data)
+        private void privUploadJSONToURL(string address, string data, out string response)
         {
-            string response;
-         
             this.wc.Headers.Add(HttpRequestHeader.ContentType, "application/json");
             this.wc.Encoding = Encoding.UTF8;
 

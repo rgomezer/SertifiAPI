@@ -18,16 +18,16 @@ namespace SertifiAPITest.Tests
             WebFormatter.GetJSONFromURL("http://apitest.sertifi.net/api/Students", out jsonData);
 
             ErrorCode retCode;
+            
             List<StudentData> studentsActual;
 
             retCode = JSONParser.ReadJSONData(jsonData, out studentsActual);
 
             Assert.AreEqual(ErrorCode.SUCCESS, retCode);
-
         }
 
         [TestMethod()]
-        public void ReadJSONDataErrorTest()
+        public void ReadJSONDataErrorTests()
         {
             ErrorCode retCode;
             List<StudentData> students2;
